@@ -52,7 +52,10 @@ extension DateTimeExtensions on DateTime {
   /// will return dates
   /// [6,7,8,9,10,11,12]
   /// Where on 6th there will be monday and on 12th there will be Sunday
-  List<DateTime> datesOfWeek({WeekDays start = WeekDays.monday}) {
+  List<DateTime> datesOfWeek({
+    bool showThreeDays = false,
+    WeekDays start = WeekDays.monday,
+  }) {
     // Here %7 ensure that we do not subtract >6 and <0 days.
     // Initial formula is,
     //    difference = (weekday - startInt)%7
@@ -61,18 +64,12 @@ extension DateTimeExtensions on DateTime {
     // adding 1 in index. So, new formula with WeekDays is,
     //    difference = (weekdays - (start.index + 1))%7
     //
-    final startDay =
-        DateTime(year, month, day - (weekday - start.index - 1) % 7);
+    final days = showThreeDays ? day : day - (weekday - start.index - 1) % 7;
+    final startDay = DateTime(year, month, days);
 
-    return [
-      startDay,
-      DateTime(startDay.year, startDay.month, startDay.day + 1),
-      DateTime(startDay.year, startDay.month, startDay.day + 2),
-      DateTime(startDay.year, startDay.month, startDay.day + 3),
-      DateTime(startDay.year, startDay.month, startDay.day + 4),
-      DateTime(startDay.year, startDay.month, startDay.day + 5),
-      DateTime(startDay.year, startDay.month, startDay.day + 6),
-    ];
+    return List.generate(showThreeDays ? 3 : 7, (index) {
+      return startDay.add(Duration(days: index));
+    });
   }
 
   /// Returns the first date of week containing the current date
