@@ -166,6 +166,10 @@ class InternalWeekViewPage<T extends Object?> extends StatefulWidget {
   /// This method will be called when user taps on timestamp in timeline.
   final TimestampCallback? onTimestampTap;
 
+  /// TODO(Shubham): Add doc comments
+  final Color? headerColor;
+  final Color? backgroundColor;
+
   /// A single page for week view.
   const InternalWeekViewPage({
     Key? key,
@@ -216,6 +220,8 @@ class InternalWeekViewPage<T extends Object?> extends StatefulWidget {
     required this.weekViewScrollController,
     this.lastScrollOffset = 0.0,
     this.keepScrollOffset = false,
+    this.headerColor,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -252,6 +258,8 @@ class _InternalWeekViewPageState<T extends Object?>
   Widget build(BuildContext context) {
     final filteredDates = _filteredDate();
     return Container(
+      color: widget.backgroundColor ??
+          Theme.of(context).colorScheme.surfaceContainerLow,
       height: widget.height + widget.weekTitleHeight,
       width: widget.width,
       child: Column(
@@ -262,26 +270,31 @@ class _InternalWeekViewPageState<T extends Object?>
         children: [
           SizedBox(
             width: widget.width,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: widget.weekTitleHeight,
-                  width: widget.timeLineWidth +
-                      widget.hourIndicatorSettings.offset,
-                  child: widget.weekNumberBuilder.call(filteredDates[0]),
-                ),
-                ...List.generate(
-                  filteredDates.length,
-                  (index) => SizedBox(
+            // TODO(Shubham): Update header of month view with same color
+            child: ColoredBox(
+              color: widget.headerColor ??
+                  Theme.of(context).colorScheme.surfaceContainerHigh,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
                     height: widget.weekTitleHeight,
-                    width: widget.weekTitleWidth,
-                    child: widget.weekDayBuilder(
-                      filteredDates[index],
-                    ),
+                    width: widget.timeLineWidth +
+                        widget.hourIndicatorSettings.offset,
+                    child: widget.weekNumberBuilder.call(filteredDates[0]),
                   ),
-                )
-              ],
+                  ...List.generate(
+                    filteredDates.length,
+                    (index) => SizedBox(
+                      height: widget.weekTitleHeight,
+                      width: widget.weekTitleWidth,
+                      child: widget.weekDayBuilder(
+                        filteredDates[index],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           Divider(
@@ -419,8 +432,14 @@ class _InternalWeekViewPageState<T extends Object?>
                               (index) => Container(
                                 decoration: widget.showVerticalLine
                                     ? BoxDecoration(
+                                        // TODO(Shubham): Color of events listing container
+                                        // color: Theme.of(context)
+                                        //     .colorScheme
+                                        //     .surfaceContainerHigh,
                                         border: Border(
                                           right: BorderSide(
+                                            // TODO(Shubham): Update color name this sets vertical line color
+
                                             color: widget
                                                 .hourIndicatorSettings.color,
                                             width: widget

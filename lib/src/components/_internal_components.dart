@@ -310,6 +310,8 @@ class _TimeLineState extends State<TimeLine> {
         right: 0,
         bottom: bottomPosition,
         child: Container(
+          // TODO(Shubham): Update timeline container
+          // color: Colors.red.withOpacity(0.5),
           height: widget.hourHeight,
           width: widget.timeLineWidth,
           child: InkWell(

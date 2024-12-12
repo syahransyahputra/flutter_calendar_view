@@ -146,6 +146,9 @@ class WeekView<T extends Object?> extends StatefulWidget {
   /// Background color of week view page.
   final Color backgroundColor;
 
+  final Color? halfQuarterBorderColor;
+  final Color? quarterHoursBorderColor;
+
   /// Scroll offset of week view page.
   final double scrollOffset;
 
@@ -310,6 +313,8 @@ class WeekView<T extends Object?> extends StatefulWidget {
     this.fullDayHeaderTextConfig,
     this.keepScrollOffset = false,
     this.onTimestampTap,
+    this.halfQuarterBorderColor,
+    this.quarterHoursBorderColor,
   })  : assert(!(onHeaderTitleTap != null && weekPageHeaderBuilder != null),
             "can't use [onHeaderTitleTap] & [weekPageHeaderBuilder] simultaneously"),
         assert((timeLineOffset) >= 0,
@@ -502,6 +507,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
               ),
               Expanded(
                 child: DecoratedBox(
+                  // TODO(Shubham): Give page color here
                   decoration: BoxDecoration(color: widget.backgroundColor),
                   child: SizedBox(
                     height: _height,
@@ -642,7 +648,8 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
     _hourIndicatorSettings = widget.hourIndicatorSettings ??
         HourIndicatorSettings(
           height: widget.heightPerMinute,
-          color: Constants.defaultBorderColor,
+          // color: hourIndicatorColor ?? Colors.greenAccent,
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
           offset: 5,
         );
 
@@ -656,7 +663,8 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
     _halfHourIndicatorSettings = widget.halfHourIndicatorSettings ??
         HourIndicatorSettings(
           height: widget.heightPerMinute,
-          color: Constants.defaultBorderColor,
+          color: widget.halfQuarterBorderColor ??
+              Theme.of(context).colorScheme.surfaceContainerHighest,
           offset: 5,
         );
 
@@ -665,7 +673,8 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
 
     _quarterHourIndicatorSettings = widget.quarterHourIndicatorSettings ??
         HourIndicatorSettings(
-          color: Constants.defaultBorderColor,
+          color: widget.quarterHoursBorderColor ??
+              Theme.of(context).colorScheme.surfaceContainerHighest,
         );
 
     assert(_quarterHourIndicatorSettings.height < _hourHeight,

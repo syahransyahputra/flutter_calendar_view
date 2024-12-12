@@ -70,6 +70,9 @@ class CalendarPageHeader extends StatelessWidget {
   /// Style for Calendar's header
   final HeaderStyle headerStyle;
 
+  /// TODO(Shubham): Add doc comments
+  final bool isDarkMode;
+
   /// Common header for month and day view In this header user can define format
   /// in which date will be displayed by providing [dateStringBuilder] function.
   const CalendarPageHeader({
@@ -86,6 +89,7 @@ class CalendarPageHeader extends StatelessWidget {
     @Deprecated("Use HeaderStyle to provide icon color")
     this.iconColor = Constants.black,
     this.headerStyle = const HeaderStyle(),
+    this.isDarkMode = false,
   })  : assert(
             titleBuilder != null || dateStringBuilder != null,
             'titleBuilder and dateStringBuilder '
@@ -94,11 +98,15 @@ class CalendarPageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+
     return Container(
       margin: headerStyle.headerMargin,
       padding: headerStyle.headerPadding,
-      decoration:
-          headerStyle.decoration ?? BoxDecoration(color: backgroundColor),
+      decoration: headerStyle.decoration ??
+          BoxDecoration(
+            color: color.primaryContainer,
+          ),
       clipBehavior: Clip.antiAlias,
       child: Row(
         mainAxisSize: headerStyle.mainAxisSize,
@@ -118,7 +126,7 @@ class CalendarPageHeader extends StatelessWidget {
                       Icon(
                         Icons.chevron_left,
                         size: headerStyle.leftIconConfig!.size,
-                        color: iconColor ?? headerStyle.leftIconConfig!.color,
+                        color: color.onPrimaryContainer,
                       ),
                 ),
           Expanded(
@@ -154,7 +162,8 @@ class CalendarPageHeader extends StatelessWidget {
                   Icon(
                     Icons.chevron_right,
                     size: headerStyle.rightIconConfig?.size,
-                    color: iconColor ?? headerStyle.rightIconConfig?.color,
+                    //color: iconColor ?? headerStyle.rightIconConfig?.color,
+                    color: color.onPrimaryContainer,
                   ),
             ),
         ],

@@ -21,7 +21,8 @@ class HourIndicatorSettings {
   const HourIndicatorSettings(
       {this.height = 1.0,
       this.offset = 0.0,
-      this.color = Colors.grey,
+      this.color =
+          Colors.grey, // TODO(Shubham): Remove default color if not required
       this.lineStyle = LineStyle.solid,
       this.dashWidth = 4,
       this.dashSpaceWidth = 4,

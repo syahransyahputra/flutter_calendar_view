@@ -3,7 +3,8 @@
 // that can be found in the LICENSE file.
 
 import 'dart:math';
-import 'dart:ui';
+
+import 'package:flutter/material.dart';
 
 class Constants {
   Constants._();
@@ -16,8 +17,11 @@ class Constants {
 
   static final List<String> weekTitles = ["M", "T", "W", "T", "F", "S", "S"];
 
+  // TODO(Shubham): Update colors
   static const Color defaultLiveTimeIndicatorColor = Color(0xff444444);
-  static const Color defaultBorderColor = Color(0xffdddddd);
+
+  // TODO(Shubham): Used in hours settings, half hr & quarter
+  static const Color defaultBorderColor = Colors.red;
   static const Color black = Color(0xff000000);
   static const Color white = Color(0xffffffff);
   static const Color offWhite = Color(0xfff0f0f0);
