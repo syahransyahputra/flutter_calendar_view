@@ -170,8 +170,9 @@ class MonthView<T extends Object?> extends StatefulWidget {
   /// defines that show and hide cell not is in current month
   final bool hideDaysNotInMonth;
 
-  /// TODO(Shubham): Add doc comments
-  final bool isDarkMode;
+  // TODO(Shubham): Add doc comment
+  final Color? inMonthCellColor;
+  final Color? notInMonthCellColor;
 
   /// Main [Widget] to display month view.
   const MonthView({
@@ -209,7 +210,8 @@ class MonthView<T extends Object?> extends StatefulWidget {
     this.onEventDoubleTap,
     this.showWeekTileBorder = true,
     this.hideDaysNotInMonth = false,
-    this.isDarkMode = false,
+    this.inMonthCellColor,
+    this.notInMonthCellColor,
   })  : assert(!(onHeaderTitleTap != null && headerBuilder != null),
             "can't use [onHeaderTitleTap] & [headerBuilder] simultaneously"),
         super(key: key);
@@ -321,18 +323,6 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
     _controller?.removeListener(_reloadCallback);
     _pageController.dispose();
     super.dispose();
-  }
-
-  Color filledCellBackgroundColor(BuildContext context) {
-    return widget.isDarkMode
-        ? Theme.of(context).colorScheme.surfaceContainerLow
-        : Theme.of(context).colorScheme.surfaceContainerLowest;
-  }
-
-  Color emptyCellBackgroundColor(BuildContext context) {
-    return widget.isDarkMode
-        ? Theme.of(context).colorScheme.surfaceContainerHighest
-        : Theme.of(context).colorScheme.surfaceContainer;
   }
 
   @override
@@ -558,7 +548,6 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
       dateStringBuilder: widget.headerStringBuilder,
       onNextMonth: nextPage,
       headerStyle: widget.headerStyle,
-      isDarkMode: widget.isDarkMode,
     );
   }
 
@@ -579,7 +568,7 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
     isInMonth,
     hideDaysNotInMonth,
   ) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final color = Theme.of(context).colorScheme;
 
     if (hideDaysNotInMonth) {
       return FilledCell<T>(
@@ -587,14 +576,14 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
         shouldHighlight: isToday,
         // TODO(Shubham): Update background color
         backgroundColor: isInMonth
-            ? filledCellBackgroundColor(context)
-            : emptyCellBackgroundColor(context),
+            ? widget.inMonthCellColor ?? color.surfaceContainerLowest
+            : widget.notInMonthCellColor ?? color.surfaceContainerLow,
         events: events,
         isInMonth: isInMonth,
         onTileTap: widget.onEventTap,
         dateStringBuilder: widget.dateStringBuilder,
         hideDaysNotInMonth: hideDaysNotInMonth,
-        titleColor: colorScheme.onPrimaryContainer,
+        titleColor: color.onPrimaryContainer,
       );
     }
     return FilledCell<T>(

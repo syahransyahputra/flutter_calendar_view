@@ -348,6 +348,24 @@ WeekView(
 
 Above code will create `WeekView` with only five days, from monday to friday.
 
+### Customise theme
+The default theme supports dark mode. Use `HeaderStyle` to customise it. 
+
+Override existing color 
+In MonthView
+Background color of cells
+inMonthCellColor - for filled cells having dates in current month.
+Default value is `colorScheme.surfaceContainerLowest`.
+notInMonthCellColor - If the date fall in other than current month.
+Default value is `colorScheme.surfaceContainerLow`
+borderColor - Default value is `colorScheme.surfaceContainerHigh`
+
+```dart
+headerStyle: HeaderStyle(
+  decoration: BoxDecoration(color: Theme.of(context).highlightColor),
+),
+```
+
 ## Main Contributors
 
 <table>
