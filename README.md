@@ -360,6 +360,7 @@ notInMonthCellColor - If the date fall in other than current month.
 Default value is `colorScheme.surfaceContainerLow`
 borderColor - Default value is `colorScheme.surfaceContainerHigh`
 
+Change page header color
 ```dart
 headerStyle: HeaderStyle(
   decoration: BoxDecoration(color: Theme.of(context).highlightColor),
