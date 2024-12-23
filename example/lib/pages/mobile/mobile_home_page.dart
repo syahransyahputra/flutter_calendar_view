@@ -32,8 +32,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              onPressed: () =>
-                  context.pushRoute(MonthViewPageDemo(isDarkMode: isDarkMode)),
+              onPressed: () => context.pushRoute(MonthViewPageDemo()),
               child: Text("Month View"),
             ),
             SizedBox(

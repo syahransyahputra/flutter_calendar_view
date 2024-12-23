@@ -6,13 +6,11 @@ import '../pages/event_details_page.dart';
 class MonthViewWidget extends StatelessWidget {
   final GlobalKey<MonthViewState>? state;
   final double? width;
-  final bool isDarkMode;
 
   const MonthViewWidget({
     super.key,
     this.state,
     this.width,
-    this.isDarkMode = false,
   });
 
   @override
