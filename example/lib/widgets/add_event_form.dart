@@ -66,7 +66,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
           TextFormField(
             controller: _titleController,
             decoration: AppConstants.inputDecoration.copyWith(
-              labelText: "Event Title",
+              labelText: "Judul tugas",
             ),
             style: TextStyle(
               color: AppColors.black,
@@ -76,7 +76,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
               final title = value?.trim();
 
               if (title == null || title == "") {
-                return "Please enter event title.";
+                return "Tolong masukan Judul tugas.";
               }
 
               return null;
@@ -92,7 +92,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
               Expanded(
                 child: DateTimeSelectorFormField(
                   decoration: AppConstants.inputDecoration.copyWith(
-                    labelText: "Start Date",
+                    labelText: "Tanggal mulai",
                   ),
                   initialDateTime: _startDate,
                   onSelect: (date) {
@@ -109,7 +109,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
                   },
                   validator: (value) {
                     if (value == null || value == "") {
-                      return "Please select start date.";
+                      return "Tolong masukan tanggal mulai";
                     }
 
                     return null;
@@ -127,13 +127,13 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
                 child: DateTimeSelectorFormField(
                   initialDateTime: _endDate,
                   decoration: AppConstants.inputDecoration.copyWith(
-                    labelText: "End Date",
+                    labelText: "Tanggal Berakhir",
                   ),
                   onSelect: (date) {
                     if (date.withoutTime.withoutTime
                         .isBefore(_startDate.withoutTime)) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('End date occurs before start date.'),
+                        content: Text('Tanggal akhir terjadi sebelum tanggal mulai.'),
                       ));
                     } else {
                       _endDate = date.withoutTime;
@@ -145,7 +145,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
                   },
                   validator: (value) {
                     if (value == null || value == "") {
-                      return "Please select end date.";
+                      return "Tolong pilih tanggal berakhir.";
                     }
 
                     return null;
@@ -166,7 +166,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
               Expanded(
                 child: DateTimeSelectorFormField(
                   decoration: AppConstants.inputDecoration.copyWith(
-                    labelText: "Start Time",
+                    labelText: "Waktu Mulai",
                   ),
                   initialDateTime: _startTime,
                   minimumDateTime: CalendarConstants.epochDate,
@@ -193,14 +193,14 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
               Expanded(
                 child: DateTimeSelectorFormField(
                   decoration: AppConstants.inputDecoration.copyWith(
-                    labelText: "End Time",
+                    labelText: "Waktu Berakhir",
                   ),
                   initialDateTime: _endTime,
                   onSelect: (date) {
                     if (_startTime != null &&
                         date.getTotalMinutes < _startTime!.getTotalMinutes) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('End time is less then start time.'),
+                        content: Text('Waktu berakhir lebih awal dari waktu mulai.'),
                       ));
                     } else {
                       _endTime = date;
@@ -238,13 +238,13 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
             maxLength: 1000,
             validator: (value) {
               if (value == null || value.trim() == "") {
-                return "Please enter event description.";
+                return "Tolong masukan deskripsi tugas.";
               }
 
               return null;
             },
             decoration: AppConstants.inputDecoration.copyWith(
-              hintText: "Event Description",
+              hintText: "Deskripsi Tugas",
             ),
           ),
           SizedBox(
@@ -253,7 +253,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
           Row(
             children: [
               Text(
-                "Event Color: ",
+                "Warna Tugas: ",
                 style: TextStyle(
                   color: AppColors.black,
                   fontSize: 17,
@@ -263,7 +263,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
                 onTap: _displayColorPicker,
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundColor: _color,
+                  backgroundColor: Color.fromARGB(0xFF, 0x43, 0x38, 0x78),
                 ),
               ),
             ],
@@ -273,7 +273,7 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
           ),
           CustomButton(
             onTap: _createEvent,
-            title: widget.event == null ? "Add Event" : "Update Event",
+            title: widget.event == null ? "Tambah Tugas" : "Update Tugas",
           ),
         ],
       ),

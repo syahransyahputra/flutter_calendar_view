@@ -15,19 +15,19 @@ class CreateEventPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Color.fromARGB(0xFF, 0x43, 0x38, 0x78),
         centerTitle: false,
         leading: IconButton(
           onPressed: context.pop,
           icon: Icon(
             Icons.arrow_back,
-            color: AppColors.black,
+            color: AppColors.white,
           ),
         ),
         title: Text(
-          event == null ? "Create New Event" : "Update Event",
+          event == null ? "Membuat tugas baru" : "Update Tugas",
           style: TextStyle(
-            color: AppColors.black,
+            color: const Color.fromARGB(255, 255, 255, 255),
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),

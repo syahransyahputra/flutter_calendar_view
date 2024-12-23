@@ -98,7 +98,7 @@ class CalendarPageHeader extends StatelessWidget {
       margin: headerStyle.headerMargin,
       padding: headerStyle.headerPadding,
       decoration:
-          headerStyle.decoration ?? BoxDecoration(color: backgroundColor),
+          headerStyle.decoration ?? BoxDecoration(color: Color.fromARGB(0xFF, 0x43, 0x38, 0x78)),
       clipBehavior: Clip.antiAlias,
       child: Row(
         mainAxisSize: headerStyle.mainAxisSize,
@@ -118,7 +118,7 @@ class CalendarPageHeader extends StatelessWidget {
                       Icon(
                         Icons.chevron_left,
                         size: headerStyle.leftIconConfig!.size,
-                        color: iconColor ?? headerStyle.leftIconConfig!.color,
+                        color: Colors.white,
                       ),
                 ),
           Expanded(
@@ -136,7 +136,7 @@ class CalendarPageHeader extends StatelessWidget {
                                 secondaryDate: secondaryDate) ??
                             '',
                         textAlign: headerStyle.titleAlign,
-                        style: headerStyle.headerTextStyle,
+                        style: headerStyle.headerTextStyle?.copyWith(color: Colors.white) ?? TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -154,7 +154,7 @@ class CalendarPageHeader extends StatelessWidget {
                   Icon(
                     Icons.chevron_right,
                     size: headerStyle.rightIconConfig?.size,
-                    color: iconColor ?? headerStyle.rightIconConfig?.color,
+                    color: Colors.white,
                   ),
             ),
         ],

@@ -12,7 +12,7 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: event.color,
+        backgroundColor: const Color.fromARGB(0xFF, 0x43, 0x38, 0x78),
         elevation: 0,
         centerTitle: false,
         title: Text(
@@ -35,7 +35,7 @@ class DetailsPage extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         children: [
           Text(
-            "Date: ${event.date.dateToStringWithFormat(format: "dd/MM/yyyy")}",
+            "Tanggal: ${event.date.dateToStringWithFormat(format: "dd/MM/yyyy")}",
           ),
           SizedBox(
             height: 15.0,
@@ -48,7 +48,7 @@ class DetailsPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("From"),
+                      Text("Dari Jam"),
                       Text(
                         event.startTime
                                 ?.getTimeInFormat(TimeStampFormat.parse_12) ??
@@ -62,7 +62,7 @@ class DetailsPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("To"),
+                      Text("Sampai jam"),
                       Text(
                         event.endTime
                                 ?.getTimeInFormat(TimeStampFormat.parse_12) ??
@@ -79,7 +79,7 @@ class DetailsPage extends StatelessWidget {
           ],
           if (event.description?.isNotEmpty ?? false) ...[
             Divider(),
-            Text("Description"),
+            Text("Deskripsi"),
             SizedBox(
               height: 10.0,
             ),

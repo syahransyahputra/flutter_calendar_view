@@ -137,8 +137,9 @@ class FilledCell<T extends Object?> extends StatelessWidget {
           if (!(!isInMonth && hideDaysNotInMonth))
             CircleAvatar(
               radius: highlightRadius,
-              backgroundColor:
-                  shouldHighlight ? highlightColor : Colors.transparent,
+              backgroundColor: shouldHighlight
+                  ? Color(0xFF433878) // Warna lingkaran diatur ke nilai yang diinginkan
+                  : Colors.transparent,
               child: Text(
                 dateStringBuilder?.call(date) ?? "${date.day}",
                 style: TextStyle(
@@ -171,7 +172,7 @@ class FilledCell<T extends Object?> extends StatelessWidget {
                             onTileDoubleTap?.call(events[index], date),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: events[index].color,
+                            color: Color.fromARGB(0xFF, 0x43, 0x38, 0x78),
                             borderRadius: BorderRadius.circular(4.0),
                           ),
                           margin: EdgeInsets.symmetric(
