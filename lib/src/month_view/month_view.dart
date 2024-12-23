@@ -170,11 +170,6 @@ class MonthView<T extends Object?> extends StatefulWidget {
   /// defines that show and hide cell not is in current month
   final bool hideDaysNotInMonth;
 
-  // TODO(Shubham): Add doc comment
-  final Color? inMonthCellColor;
-  final Color? notInMonthCellColor;
-  final Color? weekDayTileColor;
-
   /// Main [Widget] to display month view.
   const MonthView({
     Key? key,
@@ -211,9 +206,6 @@ class MonthView<T extends Object?> extends StatefulWidget {
     this.onEventDoubleTap,
     this.showWeekTileBorder = true,
     this.hideDaysNotInMonth = false,
-    this.inMonthCellColor,
-    this.notInMonthCellColor,
-    this.weekDayTileColor,
   })  : assert(!(onHeaderTitleTap != null && headerBuilder != null),
             "can't use [onHeaderTitleTap] & [headerBuilder] simultaneously"),
         super(key: key);
@@ -559,7 +551,6 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
       dayIndex: index,
       weekDayStringBuilder: widget.weekDayStringBuilder,
       displayBorder: widget.showWeekTileBorder,
-      backgroundColor: widget.weekDayTileColor,
     );
   }
 
@@ -577,10 +568,9 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
       return FilledCell<T>(
         date: date,
         shouldHighlight: isToday,
-        // TODO(Shubham): Update background color
         backgroundColor: isInMonth
-            ? widget.inMonthCellColor ?? color.surfaceContainerLowest
-            : widget.notInMonthCellColor ?? color.surfaceContainerLow,
+            ? color.surfaceContainerLowest
+            : color.surfaceContainerLow,
         events: events,
         isInMonth: isInMonth,
         onTileTap: widget.onEventTap,

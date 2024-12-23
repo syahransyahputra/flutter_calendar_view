@@ -19,6 +19,7 @@ class WeekViewWidget extends StatelessWidget {
       // showQuarterHours: true,
       // showHalfHours: true,
       showWeekends: false,
+      backgroundColor: Colors.red,
       // showLiveTimeLineInAllDays: true,
       // TODO(Shubham):  Where does this color applies
       // backgroundColor: colorScheme.primaryContainer,

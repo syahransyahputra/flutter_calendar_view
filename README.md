@@ -359,13 +359,17 @@ Default value is `colorScheme.surfaceContainerLowest`.
 notInMonthCellColor - If the date fall in other than current month.
 Default value is `colorScheme.surfaceContainerLow`
 borderColor - Default value is `colorScheme.surfaceContainerHigh`
-weekDayTileColor - To change the background of weekday tile
+
 Change page header color
 ```dart
 headerStyle: HeaderStyle(
   decoration: BoxDecoration(color: Theme.of(context).highlightColor),
 ),
 ```
+
+### Week view
+Week-number text color - Default color `onSecondaryContainer`
+To customise week number & weekdays use `weekNumberBuilder` & `weekDayBuilder`.
 
 ## Main Contributors
 
